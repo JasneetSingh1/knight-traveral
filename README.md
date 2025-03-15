@@ -1,8 +1,6 @@
 ## Table of Contents
 
 1. [Description](#description)
-1. [Demo](#demo)
-1. [Design](#design)
 1. [Features](#features)
 1. [Technologies Used](#technologies-used)
 1. [Project Challenges](#project-challenges)
@@ -12,71 +10,54 @@
 
 ## Description
 
-Briefly describe your project here. Include the project's purpose, your motivation for creating it, and any goals or achievements it represents.
-
-## Demo
-
-Provide a link to a live demo. Use gh-pages, Netlify or Vercel.
-
-Click here: [https://link-to-your-demo-goes-here/](https://link-to-your-demo-goes-here/)
-
-## Design
-
-Add a screenshot or video here. 
-I recommend https://shots.so
-
-<div align='center'>
-<img src='./path/to/your/desktop-design-screenshot.png' alt='Screenshot of desktop design'>
-<img src='../path/to/your/mobile-design-screenshot.png' alt='Screenshot of mobile design'>
-</div>
+This project implements a shortest-path solver for a knight on a chessboard. Given a starting position and a target position, the program calculates the optimal sequence of moves using a breadth-first search (BFS) algorithm. The goal is to practice and reinforce understanding of graphs, BFS traversal, and path tracking.
 
 ## Features
 
-- List the key features of your project.
-- Highlight any unique functionalities or approaches you took in its development.
+- Computes the shortest path for a knight on an 8x8 chessboard.
+- Uses BFS to ensure the optimal solution is found.
+- Keeps track of visited positions to prevent redundant calculations.
+- Returns the sequence of moves taken from start to destination.
+- Handles invalid inputs gracefully.
 
 ## Technologies Used
 
-List the technologies, libraries or frameworks used in the project.
+- JavaScript (ES6+)
 
 ## Project Challenges
 
-Discuss any challenges you faced during the project's development, including how you overcame them or what you learned from these experiences.
+- **Understanding BFS Traversal**: Initially, the implementation did not correctly track the path, leading to incorrect move sequences. The issue was resolved by maintaining a queue of paths instead of just moves.
+- **Tracking the Path**: The main challenge was ensuring that each move retained its history so that the final sequence could be reconstructed.
+
 
 ## Thoughts and Observations
 
-Share any insights or reflections you have from working on the project. This could include your thoughts on the development process, design decisions etc.
+- BFS is the ideal algorithm for this type of shortest-path problem, as it guarantees the minimal number of moves.
+- Initially, a heuristic sorting approach was used, but it was unnecessary since BFS naturally finds the shortest path.
+- Debugging involved manually printing paths at each step to verify the movement logic.
 
 ## Future Enhancements
 
-Outline any potential improvements or features you might want to add in the future. This shows the project's potential for growth and areas for further development.
+- Implement a graphical representation of the knight’s movement on a chessboard.
+- Expand the algorithm to support different board sizes.
+- Optimize performance by reducing redundant computations.
 
 ## Installation
-
-Provide instructions on how to install and run your project locally.
-
-Example below:
 
 1. Clone the GitHub repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/your-project-name.git
+   git clone https://github.com/JasneetSingh1/knight-traveral.git
    ```
 
 2. Navigate to the project's directory:
 
    ```bash
-   cd your-project-name
+   cd knight-traversal
    ```
 
-3. Install the project's dependencies using npm:
+3. Run the program using Node.js:
 
    ```bash
-   npm install
-   ```
-
-4. To build the project:
-
-   ```bash
-   npm run build
-   ```
+   node script.js
+   
