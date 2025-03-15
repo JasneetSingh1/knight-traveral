@@ -1,26 +1,29 @@
 function knightMoves(start, end) {
-  if (start < 0 || start > 7 || end < 0 || end > 7)
+  if (start.some((x) => x < 0 || x > 7) || end.some((x) => x < 0 || x > 7))
     return "Invalid start or end";
 
-  if (isEqual(start, end)) return " 0 Moves";
-
-  const queue = [start];
-  let count = 0;
+  if (isEqual(start, end)) return "0 Moves";
+  const visited = new Set();
+  visited.add(start.toString());
+  const queue = [[start]];
   while (queue.length > 0) {
-    const step = queue.shift();
-    count++;
-    let moves = calcMove(step, end);
-    console.log(step);
-    if ([...moves].some((move) => isEqual(move, end))) {
-      console.log(end);
-      console.log("DONE");
-      console.log(count)
-      return;
-    }
+    const path = queue.shift();
+    const step = path[path.length - 1];
 
-    for (const move of moves) {
-      queue.push(move);
+    let moves = calcMove(step, end);
+   
+    for(const move of moves){
+      if (isEqual(move, end)) {
+        console.log(`You made it in ${path.length} moves! Here's your path:`);
+        console.log([...path, move]);
+        return;
+      }
+      if (!visited.has(move.toString())) {
+        visited.add(move.toString());
+        queue.push([...path, move]); 
+      }
     }
+   
   }
 }
 
@@ -45,17 +48,11 @@ function calcMove(start, end) {
     }
   }
   
-  let index = Array.from(set);
-//   console.log(index)
-  index.sort(([a, b], [c, d]) => {
-    let distA = Math.abs(a - end[0]) + Math.abs(b - end[1]);
-    let distB = Math.abs(c - end[0]) + Math.abs(d - end[1]);
-    return distA - distB;
-  })
 
-//   console.log(index)
-  return new Set(index);
+  return set;
 }
+
+
 
 function isEqual(x, y) {
   if (x.length != y.length) return false;
@@ -63,6 +60,6 @@ function isEqual(x, y) {
   return true;
 }
 
-// calcMove([6,7],[7,7])
 
-knightMoves([0,0],[7,7])
+
+knightMoves([0,0],[7,0])
